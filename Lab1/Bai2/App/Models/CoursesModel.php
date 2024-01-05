@@ -13,7 +13,7 @@
  */
 function find_by_block($block)
 {
-    include '../../Config/data.php';
+    include './Config/data.php';
     return (array_key_exists($block, $courses) ? $courses[$block] : "Invalid Course ");
 }
 ?>
