@@ -16,7 +16,7 @@
                 <option value="<?= $key ?>"> <?= $value?></option>
             <?php endforeach; ?>
         </select>
-        <button type="submit">Tìm kiếm</button>
+        <button type="submit" name="submit">Tìm kiếm</button>
     </form>
     <h1>Kết quả tiềm kiếm: </h1> <?= $courses_name ?>
 </body>
