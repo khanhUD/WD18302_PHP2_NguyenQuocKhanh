@@ -21,7 +21,6 @@ use App\Core\Form;
 
 // // Kết thúc biểu mẫu
 // echo Form::end();
-
 use App\Core\Route as Router;
 
 $router = new Router();
@@ -29,4 +28,9 @@ $router
     ->register('/', [App\Controller\HomeController::class, 'index'])
     ->register('/project', [App\Controller\ProjectController::class, 'index'])
     ->register('/project/create', [App\Controller\ProjectController::class, 'create']);
-echo 'hello';
+
+try {
+    echo $router->resolve($_SERVER['REQUEST_URI']);
+} catch(\Exception $e) {
+    echo $e->getCode(); echo $e->getMessage();
+}

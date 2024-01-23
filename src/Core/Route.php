@@ -5,7 +5,7 @@ namespace App\Core;
 class Route
 {
     protected array $routes = [];
-    public function register(string $route, callable| array $action): self
+    public function register( $route, $action)
     {
         $this->routes[$route] = $action;
         return $this;
@@ -13,11 +13,12 @@ class Route
 
     public function resolve(string $requestUrl)
     {
-        $route = explode('/', $requestUrl)[0];
-        $action = $this->routes[$route] ?? null;
 
+        $route = $requestUrl;
+        $action = $this->routes[$route] ?? null;
         if (!$action) {
-            // throw new RouteNotFoundException();
+            throw new \App\Core\exception\NotFoundException();
+            die();
         }
 
         if (is_callable($action)) {
