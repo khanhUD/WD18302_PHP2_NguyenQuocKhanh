@@ -1,0 +1,137 @@
+  <!-- Menu -->
+
+  <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+      <a href="<?= WEB_ROOT ?>?url=" class="app-brand-link">
+        <span class="app-brand-logo demo">
+
+        </span>
+        <h3 class="demo menu-text fw-bolder ms-2">Easy Project</h3>
+
+      </a>
+
+      <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+      </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+      <!-- Bảng điều khiển -->
+      <li class="menu-item">
+        <a href="<?= WEB_ROOT ?>?url=" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-bar-chart'></i>
+          <div data-i18n="Analytics">THỐNG KÊ / BÁO CÁO</div>
+        </a>
+      </li>
+
+
+
+      <!-- Tài khoản  -->
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+
+          <i class='menu-icon tf-icons bx bxs-user'></i>
+          <div data-i18n="Form Elements">Tài khoản</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=AccountsController/Browser" class="menu-link">
+              <div data-i18n="Basic Inputs">Danh sách chờ duyệt</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=AccountsController/Index" class="menu-link">
+              <div data-i18n="Basic Inputs">Danh sách và tạo tài khoản</div>
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=RolesController/Index" class="menu-link">
+              <div data-i18n="Input groups">Danh sách và tạo loại chức vụ</div>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- Tài khoản  -->
+
+
+      <!-- Duyệt kế hoạch  -->
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class='menu-icon tf-icons bx bx-check'></i>
+          <div data-i18n="Form Elements">Kế hoạch dự án </div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=ProjectController/Index" class="menu-link">
+              <div data-i18n="Input groups">Danh sách kế hoạch</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=ProjectController/Browser" class="menu-link">
+              <div data-i18n="Input groups">Danh sách chờ duyệt</div>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- Duyệt kế hoạch  -->
+      <!-- kế hoạch   -->
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class='menu-icon tf-icons bx bxs-calendar'></i>
+          <div data-i18n="Form Elements">Lập kế hoạch </div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=ProjectController/Index" class="menu-link">
+              <div data-i18n="Input groups">Danh sách và tạo kế hoạch</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=TasksController/Index" class="menu-link">
+              <div data-i18n="Input groups">Danh sách và tạo nhiệm vụ</div>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- kế hoạch   -->
+      <!-- Nhóm thực hiện  -->
+
+      <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+
+          <i class='menu-icon tf-icons bx bxs-user'></i>
+          <div data-i18n="Form Elements">Nhân sự</div>
+        </a>
+        <ul class="menu-sub">
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=TeamsController/Index" class="menu-link">
+              <div data-i18n="Basic Inputs">Danh sách và tạo nhóm </div>
+            </a>
+          </li>
+
+          <li class="menu-item">
+            <a href="<?= WEB_ROOT ?>?url=TeammembersController/Index" class="menu-link">
+              <div data-i18n="Basic Inputs">Danh sách và tạo nhân viên</div>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- Nhóm thực hiện  -->
+    </ul>
+
+  </aside>
+  <!-- / Menu -->
