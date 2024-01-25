@@ -12,6 +12,7 @@ use App\Core\Route as Router;
 
 $router = new Router();
 $router
+   
     ->register('/dang-nhap', [App\Controllers\LoginController::class, 'index'])
     ->register('/dang-ky', [App\Controllers\RegisterController::class, 'index'])
     ->register('/', [App\Controllers\HomeController::class, 'index'])

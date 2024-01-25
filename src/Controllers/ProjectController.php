@@ -8,21 +8,21 @@ class ProjectController extends BaseController
 {
    public function index()
     {
-        echo 'đây là danh sách dựu án';
-        // return $this->view('Admin.Project.List');
+        // echo 'đây là danh sách dựu án';
+        return $this->view('Admin.Project.List');
     }
     public function Browser()
     {
-        echo 'đây là danh sách chờ duyệt ';
-        // return $this->view('Admin.Project.WaitingList');
+        // echo 'đây là danh sách chờ duyệt ';
+        return $this->view('Admin.Project.WaitingList');
     }
     /*
     Hiển thị fomr thêm dự án GET
     */
     public function create()
     {
-        echo 'đây là tạo ';
-        // return $this->view('Admin.Project.Create');
+        // echo 'đây là tạo ';
+        return $this->view('Admin.Project.List');
     }
 
     // Xử lý thêm dự án POST
@@ -34,15 +34,13 @@ class ProjectController extends BaseController
     // Lấy ra thông tin của 1 dự án GET
     public function show($id)
     {
-      echo 'đây là hiển thị chi tiết của ..có id ='.$id;
+        return $this->view('Admin.Project.Detail');
     }
 
     // Hiển thị form sửa dự án GET
     public function edit($id)
     {
-      echo 'đây là sửa của ..có id ='.$id;
-        // return $this->view('Admin.Project.Edit');
-
+        return $this->view('Admin.Project.Edit');
     }
 
     // Xử lý xửa dự án POST

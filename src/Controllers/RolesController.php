@@ -9,16 +9,16 @@ class RolesController extends BaseController
 
     public function index()
     {
-        echo 'đây là danh sách chức vụ';
-        // return $this->view('Admin.Roles.List');
+        // echo 'đây là danh sách chức vụ';
+        return $this->view('Admin.Roles.List');
     }
     /*
     Hiển thị fomr thêm dự án GET
     */
     public function create()
     {
-        echo 'đây là tạo chức vụ';
-        return $this->view('Admin.Roles.Create');
+        // echo 'đây là tạo chức vụ';
+        return $this->view('Admin.Roles.List');
     }
 
     // Xử lý thêm dự án POST
@@ -30,14 +30,15 @@ class RolesController extends BaseController
     // Lấy ra thông tin của 1 dự án GET
     public function show($id)
     {
-        echo 'đây chức vụ chi tiết';
+        return $this->view('Admin.Roles.Detail');
+
     }
 
     // Hiển thị form sửa dự án GET
     public function edit()
     {
-        echo 'đây là sửa chức vụ';
-        // return $this->view('Admin.Roles.Edit');
+        // echo 'đây là sửa chức vụ';
+        return $this->view('Admin.Roles.Edit');
     }
 
     // Xử lý xửa dự án POST

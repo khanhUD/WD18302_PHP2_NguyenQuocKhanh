@@ -9,8 +9,8 @@ class LoginController extends BaseController
 
     public function index()
     {
-        echo 'đây là đăng nhập';
-        // return $this->view('Login.login');
+        // echo 'đây là đăng nhập';
+        return $this->view('Login.login');
     }
 
 }

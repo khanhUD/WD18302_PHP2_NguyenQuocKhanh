@@ -1,17 +1,17 @@
 <?php
-include './App/Views/Block/Admin/header.php';
+include './src/Views/Block/Admin/header.php';
 ?>
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
   <div class="layout-container">
     <?php
-    include './App/Views/Block/Admin/menu.php'
+    include './src/Views/Block/Admin/menu.php'
     ?>
 
     <!-- Layout container -->
     <div class="layout-page">
       <?php
-      include './App/Views/Block/Admin/navbar.php'
+      include './src/Views/Block/Admin/navbar.php'
       ?>
       <!-- Content wrapper -->
       <div class="content-wrapper">
@@ -112,7 +112,7 @@ include './App/Views/Block/Admin/header.php';
         </div>
 
         <?php
-        include './App/Views/Block/Admin/footer.php'
+        include './src/Views/Block/Admin/footer.php'
         ?>
 
 
@@ -128,5 +128,5 @@ include './App/Views/Block/Admin/header.php';
 </div>
 <!-- / Layout wrapper -->
 <?php
-include './App/Views/Block/Admin/scrip.php'
+include './src/Views/Block/Admin/scrip.php'
 ?>

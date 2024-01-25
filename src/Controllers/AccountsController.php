@@ -9,21 +9,21 @@ class AccountsController extends BaseController
 {
     public function index()
     {
-        echo 'đây là danh sách tài khoản';
-        // return $this->view('Admin.Accounts.List');
+        // echo 'đây là danh sách tài khoản';
+        return $this->view('Admin.Accounts.List');
     }
     public function Browser()
     {
-        echo 'đây là danh sách chờ duyệt tài khoản';
-        // return $this->view('Admin.Accounts.WaitingList');
+        // echo 'đây là danh sách chờ duyệt tài khoản';
+        return $this->view('Admin.Accounts.WaitingList');
     }
     /*
     Hiển thị fomr thêm dự án GET
     */
     public function create()
     {
-        echo 'đây là tạo tài khoản';
-        // return $this->view('Admin.Accounts.Create');
+        // echo 'đây là tạo tài khoản';
+        return $this->view('Admin.Accounts.List');
     }
 
     // Xử lý thêm dự án POST
@@ -36,13 +36,15 @@ class AccountsController extends BaseController
     public function show($id)
     {
         echo 'đây là tài khoản chi tiết';
+        // return $this->view('Admin.Accounts.Detail');
+
     }
 
     // Hiển thị form sửa dự án GET
     public function edit($id)
     {
-        echo 'sửa tài khoản';
-        // return $this->view('Admin.Accounts.Edit');
+        // echo 'sửa tài khoản';
+        return $this->view('Admin.Accounts.Edit');
 
     }
 

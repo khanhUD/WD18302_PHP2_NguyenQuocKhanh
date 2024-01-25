@@ -8,16 +8,16 @@ class TasksController extends BaseController
 
     public function index()
     {
-        echo 'đây danh sách nhiệm vụ';
-        // return $this->view('Admin.Tasks.List');
+        // echo 'đây danh sách nhiệm vụ';
+        return $this->view('Admin.Tasks.List');
     }
     /*
     Hiển thị fomr thêm dự án GET
     */
     public function create()
     {
-        echo 'đây tạo nhiệm vụ';
-        // return $this->view('Admin.Tasks.Create');
+        // echo 'đây tạo nhiệm vụ';
+        return $this->view('Admin.Tasks.List');
 
     }
 
@@ -30,16 +30,16 @@ class TasksController extends BaseController
     // Lấy ra thông tin của 1 dự án GET
     public function show()
     {
-        echo 'đây chi tiết nhiệm vụ';
-        // return $this->view('Admin.Tasks.Detail');
+        // echo 'đây chi tiết nhiệm vụ';
+        return $this->view('Admin.Tasks.Detail');
 
     }
 
     // Hiển thị form sửa dự án GET
     public function edit()
     {
-        echo 'đây danh sửa nhiệm vụ';
-        // return $this->view('Admin.Tasks.Edit');
+        // echo 'đây danh sửa nhiệm vụ';
+        return $this->view('Admin.Tasks.Edit');
 
     }
 
