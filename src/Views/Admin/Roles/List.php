@@ -52,8 +52,8 @@ include './src/Views/Block/Admin/header.php';
                                     <!-- Nội dung của cột 9 -->
                                     <h4>DANH SÁCH CHỨC VỤ</h4>
                                     <div class="card">
-                                        <div class="table-responsive text-nowrap">
-                                            <table class="table table-hover">
+                                    <div class="table-responsive text-nowrap p-2">
+                      <table id="example" class="table table-striped " style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Mã chức vụ</th>

@@ -24,7 +24,7 @@ include './src/Views/Block/Admin/header.php';
 
                         <div class="card p-3">
                             <h4>TẠO NHIỆM VỤ</h4>
-                            <form id="form-add-products" action="" method="POST" enctype="multipart/form-data">
+                            <form id="form-add-products" action="/nhiem-vu/them-xu-ly" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_name" class="form-label">Tên nhiệm vụ</label>
@@ -39,17 +39,17 @@ include './src/Views/Block/Admin/header.php';
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="project_id" class="form-label">Thuộc Dự án</label>
                                         <select class="form-control" name="project_id" id="project_id">
-                                            <?php foreach ($productCategories as $productCategories) : ?>
-                                                <option value="<?= $productCategories['id'] ?>"><?= $productCategories['name'] ?></option>
+                                            <?php foreach ($Projects as $Project) : ?>
+                                                <option value="<?= $Project['project_id'] ?>"><?= $Project['project_name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <span class="form-message"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
-                                        <label for="team_id" class="form-label">NHóm thực hiện</label>
-                                        <select class="form-control" name="team_id" id="team_id">
-                                            <?php foreach ($productCategories as $productCategories) : ?>
-                                                <option value="<?= $productCategories['id'] ?>"><?= $productCategories['name'] ?></option>
+                                        <label for="account_id" class="form-label">Người thực hiện</label>
+                                        <select class="form-control" name="account_id" id="account_id">
+                                            <?php foreach ($Accounts as $Account) : ?>
+                                                <option value="<?= $Account['account_id'] ?>"><?= $Account['full_name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <span class="form-message"></span>
@@ -89,39 +89,47 @@ include './src/Views/Block/Admin/header.php';
                                 <!-- Nội dung của cột 9 -->
                                 <h4>Danh sách kế hoạch </h4>
                                 <div class="card">
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="table table-hover">
+                                    <div class="table-responsive text-nowrap p-2">
+                                        <table id="example" class="table table-striped " style="width:100%">
                                             <thead>
                                                 <tr>
 
                                                     <th>Tên nhiệm vụ </th>
                                                     <th>Thuộc dự án </th>
-                                                    <th>Nhóm thực hiện </th>
-                                                    <th>NGày bắt đầu</th>
-                                                    <th>Ngày kế thúc</th>
+                                                    <th>Người thực hiện </th>
+                                                    <th>Nội dung</th>
+                                                    <th>Ngày tạo</th>
                                                     <th>Chức năng</th>
                                                 </tr>
 
                                             </thead>
                                             <tbody class="table-border-bottom-0">
-                                                <tr>
-                                                    <td>Nhiệm vụ 1</td>
-                                                    <td>Dự án 1</td>
-                                                    <td>Nhóm 1</td>
-                                                    <td>11/11/2024</td>
-                                                    <td>12/12/2024</td>
-                                                    <td>
-                                                        <a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-1"></i></i>Xem chi tiết</a>
-                                                        <a class="dropdown-item" href="#"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                                <?php foreach ($Tasks as $task) : ?>
+                                                    <tr>
+                                                        <td><?= $task['task_name'] ?></td>
+                                                        <td><?= $task['project_name'] ?></td>
+                                                        <td><?= $task['account_full_name'] ?></td>
+                                                        <td class="col-2 text-truncate" style="max-width: 150px;"><?= $task['task_content'] ?></td>
+                                                        <td><?= $task['create_at'] ?></td>
+                                                        <td>
+                                                            <div class="dropdown">
 
-                                                        <form method="post" action="#">
-                                                            <input type="hidden" name="id" value="<?= $banner['id'] ?>">
-                                                            <button class="dropdown-item" type="submit">
-                                                                <i class="bx bx-trash me-1"></i>Xoa</button>
-                                                        </form>
-
-                                                    </td>
-                                                </tr>
+                                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                                                    <a class="dropdown-item" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
+                                                                    <form method="post" action="/du-an/xoa">
+                                                                        <input type="hidden" name="project_id" value="<?= $items['project_id'] ?>">
+                                                                        <button class="dropdown-item" type="submit">
+                                                                            <i class="bx bx-trash me-1"></i>Xóa</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
                                             </tbody>
                                         </table>
                                     </div>

@@ -4,16 +4,14 @@ class Connection {
 
     public array $config;
 
-    public function __construct()
+    public  function __construct()
     {
         $this->config = [
             'host' => 'localhost',
             'user' => 'root',
             'pass' => 'mysql',
-            'db' => 'database_vinh'
+            'db' => 'php2'
          ];   
-    
-         
     }
 }
 ?>

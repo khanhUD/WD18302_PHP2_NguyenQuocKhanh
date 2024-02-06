@@ -15,11 +15,10 @@
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                       <div class="avatar avatar-online" style="width: 40px; height: 40px; overflow: hidden;">
-                          <div class="avatar avatar-online" style="width: 40px; height: 40px; overflow: hidden;">
-                          <!-- <img src="../../../../public/uploads/imagenull.jpg" alt=""> -->
-                       
-                              <img src="../../../../public/uploads/imagenull.jpg" alt=" " class="w-100 h-100 rounded-circle" style="object-fit: cover;">
-                          </div>
+                          <?php
+                            $imagePath = ($_SESSION['users']['image'] !== null) ? $_SESSION['users']['image'] : "imagenull.jpg";
+                            ?>
+                          <img src="../../../../public/uploads/<?= $imagePath ?>" alt=" " class="w-100 h-100 rounded-circle" style="object-fit: cover;">
                       </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -29,13 +28,37 @@
                                   <div class="d-flex">
                                       <div class="flex-shrink-0 me-3">
                                           <div class="avatar avatar-online" style="width: 40px; height: 40px; overflow: hidden;">
-                                              <img src="../../../../public/uploads/' . (!empty($_SESSION['users']) && ($_SESSION['users']['image'] !== '') ? $_SESSION['users']['image'] : 'imagenull.jpg'); ?>" alt class="w-100 h-100 rounded-circle" style="object-fit: cover;">
+                                              <?php
+                                                $imagePath = ($_SESSION['users']['image'] !== null) ? $_SESSION['users']['image'] : "imagenull.jpg";
+                                                ?>
+
+                                              <img src="../../../../public/uploads/<?= $imagePath ?>" alt=" " class="w-100 h-100 rounded-circle" style="object-fit: cover;">
                                           </div>
                                       </div>
                                       <div class="flex-grow-1">
                                           <span class="fw-semibold d-block"><?= $_SESSION['users']['full_name'] ?></span>
-                                          <small class="text-muted"><?= $_SESSION['users']['role'] === 'admin' ? 'Quản trị viên' : 'Khách hàng'; ?></small>
+                                          <small class="text-muted">
+                                              <?php
+                                                $userRole = $_SESSION['users']['role_id'];
+
+                                                switch ($userRole) {
+                                                    case '1':
+                                                        echo 'Admin';
+                                                        break;
+                                                    case '2':
+                                                        echo 'Giám đốc';
+                                                        break;
+                                                    case '3':
+                                                        echo 'Trường phòng kế hoạch';
+                                                        break;
+                                                    default:
+                                                        echo 'Nhân viên';
+                                                }
+                                                ?>
+                                          </small>
+
                                       </div>
+
                                   </div>
                               </a>
                           </li>
@@ -43,21 +66,27 @@
                               <div class="dropdown-divider"></div>
                           </li>
                           <li>
-                              <a class="dropdown-item" href="Dang-Xuat">
+                              <a class="dropdown-item" href="/dang-xuat">
                                   <i class="bx bx-power-off me-2"></i>
                                   <span class="align-middle">Đăng xuất</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="dropdown-item" href="/dang-xuat">
+                                  <i class="bx bx-power-off me-2"></i>
+                                  <span class="align-middle">Quên mật khẩu</span>
                               </a>
                           </li>
                       <?php endif; ?>
                       <?php if (!isset($_SESSION['users'])) : ?>
                           <li>
-                              <a class="dropdown-item" href="<?php WEB_ROOT?>?url=LoginController/index">
+                              <a class="dropdown-item" href="/dang-nhap">
                                   <i class="bx bx-power-off me-2"></i>
                                   <span class="align-middle">Đăng nhập</span>
                               </a>
                           </li>
                           <li>
-                              <a class="dropdown-item" href="<?php WEB_ROOT?>?url=RegisterController/index">
+                              <a class="dropdown-item" href="<?php WEB_ROOT ?>?url=RegisterController/index">
                                   <i class="bx bx-power-off me-2"></i>
                                   <span class="align-middle">Đăng ký</span>
                               </a>

@@ -1,8 +1,13 @@
   <!-- Menu -->
-
+  <style>
+    .menu-link {
+      text-decoration: none;
+      /* Vô hiệu hóa đường gạch chân */
+    }
+  </style>
   <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="<?= WEB_ROOT ?>?url=" class="app-brand-link">
+      <a href="/" class="app-brand-link">
         <span class="app-brand-logo demo">
 
         </span>
@@ -20,7 +25,7 @@
     <ul class="menu-inner py-1">
       <!-- Bảng điều khiển -->
       <li class="menu-item">
-        <a href="<?= WEB_ROOT ?>?url=" class="menu-link">
+        <a href="/" class="menu-link">
           <i class='menu-icon tf-icons bx bx-bar-chart'></i>
           <div data-i18n="Analytics">THỐNG KÊ / BÁO CÁO</div>
         </a>
@@ -38,18 +43,18 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=AccountsController/Browser" class="menu-link">
+            <a href="/tai-khoan/cho-duyet" class="menu-link">
               <div data-i18n="Basic Inputs">Danh sách chờ duyệt</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=AccountsController/Index" class="menu-link">
+            <a href="/tai-khoan" class="menu-link">
               <div data-i18n="Basic Inputs">Danh sách và tạo tài khoản</div>
             </a>
           </li>
 
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=RolesController/Index" class="menu-link">
+            <a href="/chuc-vu" class="menu-link">
               <div data-i18n="Input groups">Danh sách và tạo loại chức vụ</div>
             </a>
           </li>
@@ -69,12 +74,12 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=ProjectController/Index" class="menu-link">
+            <a href="/du-an" class="menu-link">
               <div data-i18n="Input groups">Danh sách kế hoạch</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=ProjectController/Browser" class="menu-link">
+            <a href="/du-an/cho-duyet" class="menu-link">
               <div data-i18n="Input groups">Danh sách chờ duyệt</div>
             </a>
           </li>
@@ -92,13 +97,23 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=ProjectController/Index" class="menu-link">
+            <a href="/du-an/them" class="menu-link">
               <div data-i18n="Input groups">Danh sách và tạo kế hoạch</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="<?= WEB_ROOT ?>?url=TasksController/Index" class="menu-link">
+            <a href="/du-an/cho-duyet" class="menu-link">
+              <div data-i18n="Input groups">Danh sách kế hoạch chờ duyệt</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="/nhiem-vu/them" class="menu-link">
               <div data-i18n="Input groups">Danh sách và tạo nhiệm vụ</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="/nhiem-vu/phan-cong" class="menu-link">
+              <div data-i18n="Input groups">Danh sách phân công</div>
             </a>
           </li>
 
@@ -108,7 +123,7 @@
       <!-- kế hoạch   -->
       <!-- Nhóm thực hiện  -->
 
-      <li class="menu-item">
+      <!-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
 
           <i class='menu-icon tf-icons bx bxs-user'></i>
@@ -128,7 +143,7 @@
           </li>
 
         </ul>
-      </li>
+      </li> -->
 
       <!-- Nhóm thực hiện  -->
     </ul>

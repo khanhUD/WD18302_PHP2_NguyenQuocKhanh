@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Đăng Ký Ninh Kiều Restaurant</title>
+    <title>Quên Mật Khẩu Ninh Kiều Restaurant</title>
 
     <meta name="description" content="" />
 
@@ -62,48 +62,6 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../../../public/assets/admin/js/config.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script>$(document).ready(function() {
-          $.validator.addMethod("firstUppercase", function(value, element) {
-        return /^[A-Z]/.test(value);
-      }, "Mật khẩu phải bắt đầu bằng một chữ cái viết hoa.");
-
-  $("#formLogin").validate({
-    rules: {  
-      email: {
-        required: true,
-        email: true
-      },
-      password: {
-        required: true,
-        minlength: 8,
-        firstUppercase: true
-      }
-    },
-    messages: {
-      email: {
-        required: "Vui lòng nhập địa chỉ email của bạn.",
-        email: "Địa chỉ email không hợp lệ."
-      },
-      password: {
-        required: "Vui lòng nhập mật khẩu.",
-        minlength: "Mật khẩu phải có ít nhất 8 ký tự.",
-        firstUppercase: "Chữ cái đầu phải viết hoa"
-      }
-    },
-    errorPlacement: function(error, element) {
-      error.appendTo(element.closest(".form-group").find('.form-message'));
-    },
-    highlight: function(element, errorClass) {
-      $(element).closest(".form-group").addClass("has-error");
-    },
-    unhighlight: function(element, errorClass) {
-      $(element).closest(".form-group").removeClass("has-error");
-    }
-  });
-});
-</script>
   </head>
 
   <body>
@@ -111,58 +69,49 @@
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-          <!-- Register Card -->
+        <div class="authentication-inner py-4">
+          <!-- Forgot Password -->
           <div class="card">
             <div class="card-body">
-            <a href=""><h4 class="mb-2 text-center">Easy Project</h4></a>
-              
-            <form id="formLogin" class="mb-3" action="/dang-nhap/xu-ly" method="POST">
-   
+          
+              <a href=""><h4 class="mb-2 text-center">Easy Project</h4></a>
+ 
+              <p class="mb-4">Nhập email của bạn và chúng tôi sẽ gửi cho bạn hướng dẫn để đặt lại mật khẩu của bạn</p>
+              <form id="forgot_password" class="mb-3" action="" method="POST">
                 <div class="mb-3 form-group">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email của bạn..." >
-                  <div class='form-message'></div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Nhập email của bạn"
+                    autofocus
+                  >
+                  <div class='form-message text-danger'></div>
                 </div>
-  
-                <div class="mb-3 form-group form-password-toggle">
-                  <label class="form-label" for="password">Mật khẩu</label>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"id="password"class="form-control"name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    >
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                  <div class='form-message'></div>
-                </div>  
-                <div class="err text-center">
-              <?php echo isset($error_message) ? $error_message : ''; ?>
-            </div>
-                <button class="btn btn-primary d-grid w-100">Đăng nhập</button>
+                <button name="send" class="btn btn-primary d-grid w-100">Gửi liên kết đặt lại</button>
               </form>
-
-              <p class="text-center">
-          <span>Bạn chưa có tài khoản?</span>
-          <a href="<?php WEB_ROOT ?>/dang-ky">
-            <span>Tạo một tài khoản</span>
-          </a>
-        </p>
+              <div class="text-center">
+                <a href="/dang-nhap" class="d-flex align-items-center justify-content-center">
+                  <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
+                  Quay lại đăng nhập
+                </a>
+              </div>
             </div>
           </div>
-          <!-- Register Card -->
+          <!-- /Forgot Password --> 
         </div>
       </div>
     </div>
+   
 
     <!-- / Content -->
 
-  
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../../public/assets/admin/js/Validation.js"></script>
     <script src="../../../public/assets/admin/vendor/libs/jquery/jquery.js"></script>
     <script src="../../../public/assets/admin/vendor/libs/popper/popper.js"></script>
     <script src="../../../public/assets/admin/vendor/js/bootstrap.js"></script>
@@ -175,12 +124,10 @@
 
     <!-- Main JS -->
     <script src="../../../public/assets/admin/js/main.js"></script>
+  <!-- Validate -->
+
 
     <!-- Page JS -->
-
-    <!-- Validate -->
-    <script src="../../../public/assets/admin/js/Validation.js"></script>
-
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

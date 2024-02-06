@@ -62,6 +62,54 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../../../public/assets/admin/js/config.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>$(document).ready(function() {
+          $.validator.addMethod("firstUppercase", function(value, element) {
+        return /^[A-Z]/.test(value);
+      }, "Mật khẩu phải bắt đầu bằng một chữ cái viết hoa.");
+
+  $("#register").validate({
+    rules: {
+      full_name: {
+        required: true,
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 8,
+        firstUppercase: true
+      }
+    },
+    messages: {
+      full_name: {
+        required: "Vui lòng nhập họ và tên của bạn."
+      },
+      email: {
+        required: "Vui lòng nhập địa chỉ email của bạn.",
+        email: "Địa chỉ email không hợp lệ."
+      },
+      password: {
+        required: "Vui lòng nhập mật khẩu.",
+        minlength: "Mật khẩu phải có ít nhất 8 ký tự.",
+        firstUppercase: "Chữ cái đầu phải viết hoa"
+      }
+    },
+    errorPlacement: function(error, element) {
+      error.appendTo(element.closest(".form-group").find('.form-message'));
+    },
+    highlight: function(element, errorClass) {
+      $(element).closest(".form-group").addClass("has-error");
+    },
+    unhighlight: function(element, errorClass) {
+      $(element).closest(".form-group").removeClass("has-error");
+    }
+  });
+});
+</script>
   </head>
 
   <body>
@@ -75,9 +123,7 @@
             <div class="card-body">
             <a href=""><h4 class="mb-2 text-center">Easy Project</h4></a>
               
-     
-
-              <form id="formSingUp" class="mb-3" action="" method="post">
+              <form id="register" class="mb-3" action="/dang-ky/xu-ly" method="post">
                 <div class="mb-3 form-group">
                   <label for="full_name" class="form-label">Họ và tên</label>
                   <input
@@ -90,12 +136,14 @@
                   <div class='form-message'></div>
                 </div>
                 <div class="mb-3 form-group">
-                  <label for="phone_number" class="form-label">Số điện thoại</label>
-                  <input
-                    type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Nhập số điện thoại của bạn...."autofocus>  
-                  <div class='form-message'></div>
+                  <label for="role_id" class="form-label">Chức vụ</label>
+                  <select class="form-control" name="role_id" id="role_id">
+                   <?php foreach ($roles as $role) : ?>
+                   <option value="<?= $role['role_id'] ?>"><?= $role['role_name'] ?></option>
+                   <?php endforeach; ?>
+          </select>          
                 </div>
-               
+  
                 <div class="mb-3 form-group form-password-toggle">
                   <label class="form-label" for="password">Mật khẩu</label>
                   <div class="input-group input-group-merge">
@@ -107,16 +155,16 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                   <div class='form-message'></div>
-                </div>
-
-              
-               
+                </div>  
+                <div class="err text-center">
+              <?php echo isset($error_message) ? $error_message : ''; ?>
+            </div>
                 <button class="btn btn-primary d-grid w-100">Đăng ký</button>
               </form>
 
               <p class="text-center">
                 <span>Bạn đã có tài khoản?</span>
-                <a href="<?php WEB_ROOT?>?url=LoginController/index">
+                <a href="<?php WEB_ROOT ?>/dang-nhap">
                   <span>Đăng nhập ngay</span>
                 </a>
               </p>
@@ -152,22 +200,6 @@
     <!-- Validate -->
     <script src="../../../public/assets/admin/js/Validation.js"></script>
 
-<script>
-  if (document.querySelector('#formSingUp')) {
-    Validator({
-      form: '#formSingUp',
-      formGroupSelector: '.form-group',
-      errorSelector: '.form-message',
-      rules: [
-        Validator.isRequired('input[name="full_name"]', '* Vui lòng nhập họ và tên '),
-        Validator.isEmail('input[name="email"]', '* Vui lòng nhập đúng định dạng email '),
-        Validator.isPhoneNumber('input[name="phone_number"]', ''),
-        Validator.minLength('input[name="password"]', '8', ''),
-      ]
-    });
-  }
-
-</script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

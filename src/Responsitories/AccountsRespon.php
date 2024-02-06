@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AccountsModel;
 
-class AccountsController extends BaseController
+class AccountsRespon extends BaseController
 {
     public $list, $accounts;
     public function __construct()
