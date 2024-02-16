@@ -37,4 +37,20 @@ class TasksModel extends BaseModel
             ->insert($data);
         return $data;
     }
+    public function getTaskDetail($id)
+    {
+        $data = $this
+            ->table($this->tableName)
+            ->where('task_id', '=', $id)
+            ->first();
+        return $data;
+    }
+    public function getTaskById($id)
+    {
+        $data = $this
+            ->table($this->tableName)
+            ->where('task_id', '=', $id)
+            ->first();
+        return $data;
+    }
 }

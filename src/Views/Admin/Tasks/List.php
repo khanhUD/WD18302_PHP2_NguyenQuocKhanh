@@ -28,12 +28,12 @@ include './src/Views/Block/Admin/header.php';
                                 <div class="row">
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_name" class="form-label">Tên nhiệm vụ</label>
-                                        <input class="form-control" type="text" id="task_name" name="task_name" value="" placeholder="Nhập tiêu đề bài viết" />
+                                        <input class="form-control" type="text" id="task_name" name="task_name" value="" placeholder="Nhập tên nhiệm vụ..." />
                                         <span class="form-message" id="task_name-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_content" class="form-label">Nội dung nhiệm vụ</label>
-                                        <input class="form-control" type="text" id="task_content" name="task_content" value="" placeholder="Nhập tiêu đề bài viết" />
+                                        <input class="form-control" type="text" id="task_content" name="task_content" value="" placeholder="Nội dung..." />
                                         <span class="form-message" id="task_content-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
@@ -118,7 +118,7 @@ include './src/Views/Block/Admin/header.php';
                                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                                                    <a class="dropdown-item" href="/nhiem-vu/sua/<?= $task['task_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
                                                                     <a class="dropdown-item" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
                                                                     <form method="post" action="/du-an/xoa">
                                                                         <input type="hidden" name="project_id" value="<?= $items['project_id'] ?>">

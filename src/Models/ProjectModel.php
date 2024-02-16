@@ -53,7 +53,7 @@ class ProjectModel extends BaseModel
     }
     public function updateProject($data, $id)
     {
-       
+     
         $data = $this
             ->table($this->tableName)
             ->where('project_id', '=', $id)

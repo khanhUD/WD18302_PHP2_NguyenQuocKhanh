@@ -34,58 +34,62 @@
 
 
       <!-- Tài khoản  -->
+      <?php
+      if (isset($_SESSION['users']) && (($_SESSION['users']['role_id']) == 1 )) :
+      ?>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
 
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bxs-user'></i>
+            <div data-i18n="Form Elements">Tài khoản</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="/tai-khoan/cho-duyet" class="menu-link">
+                <div data-i18n="Basic Inputs">Danh sách chờ duyệt</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/tai-khoan" class="menu-link">
+                <div data-i18n="Basic Inputs">Danh sách và tạo tài khoản</div>
+              </a>
+            </li>
 
-          <i class='menu-icon tf-icons bx bxs-user'></i>
-          <div data-i18n="Form Elements">Tài khoản</div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/tai-khoan/cho-duyet" class="menu-link">
-              <div data-i18n="Basic Inputs">Danh sách chờ duyệt</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/tai-khoan" class="menu-link">
-              <div data-i18n="Basic Inputs">Danh sách và tạo tài khoản</div>
-            </a>
-          </li>
+            <li class="menu-item">
+              <a href="/chuc-vu" class="menu-link">
+                <div data-i18n="Input groups">Danh sách và tạo loại chức vụ</div>
+              </a>
+            </li>
 
-          <li class="menu-item">
-            <a href="/chuc-vu" class="menu-link">
-              <div data-i18n="Input groups">Danh sách và tạo loại chức vụ</div>
-            </a>
-          </li>
-
-        </ul>
-      </li>
-
+          </ul>
+        </li>
+      <?php endif; ?>
       <!-- Tài khoản  -->
 
 
       <!-- Duyệt kế hoạch  -->
-
-      <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class='menu-icon tf-icons bx bx-check'></i>
-          <div data-i18n="Form Elements">Kế hoạch dự án </div>
-        </a>
-        <ul class="menu-sub">
-          <li class="menu-item">
-            <a href="/du-an" class="menu-link">
-              <div data-i18n="Input groups">Danh sách kế hoạch</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/du-an/cho-duyet" class="menu-link">
-              <div data-i18n="Input groups">Danh sách chờ duyệt</div>
-            </a>
-          </li>
-
-        </ul>
-      </li>
+      <?php
+      if (isset($_SESSION['users']) && (($_SESSION['users']['role_id']) == 1 || ($_SESSION['users']['role_id']) == 2)) :
+      ?>
+        <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons bx bx-check'></i>
+            <div data-i18n="Form Elements">Kế hoạch dự án </div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item">
+              <a href="/du-an" class="menu-link">
+                <div data-i18n="Input groups">Danh sách kế hoạch</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/du-an/cho-duyet" class="menu-link">
+                <div data-i18n="Input groups">Danh sách chờ duyệt</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <?php endif; ?>
 
       <!-- Duyệt kế hoạch  -->
       <!-- kế hoạch   -->

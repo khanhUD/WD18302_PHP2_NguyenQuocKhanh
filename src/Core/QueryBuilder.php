@@ -132,6 +132,7 @@ trait QueryBuilder
         $whereUpdate = trim($whereUpdate);
         $tableName = $this->tableName;
         $updateStatus = $this->updateData($tableName, $data, $whereUpdate);
+
         return $updateStatus;
     }
 

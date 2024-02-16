@@ -17,52 +17,58 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-                    <div class="mt-3">                     
+                    <div class="mt-3">
                         <div class="card p-3">
                             <h4>SỬA NHIỆM VỤ</h4>
                             <form id="form-add-products" action="" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_name" class="form-label">Tên nhiệm vụ</label>
-                                        <input class="form-control" type="text" id="task_name" name="task_name" value="" placeholder="Nhập tiêu đề bài viết" />
+                                        <input class="form-control" type="text" id="task_name" name="task_name" value="<?= $task['task_name'] ?>" placeholder="Nhập tiêu đề bài viết" />
                                         <span class="form-message" id="task_name-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_content" class="form-label">Nội dung nhiệm vụ</label>
-                                        <input class="form-control" type="text" id="task_content" name="task_content" value="" placeholder="Nhập tiêu đề bài viết" />
+                                        <input class="form-control" type="text" id="task_content" name="task_content" value="<?= $task['task_content'] ?>" placeholder="Nhập tiêu đề bài viết" />
                                         <span class="form-message" id="task_content-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="project_id" class="form-label">Thuộc Dự án</label>
                                         <select class="form-control" name="project_id" id="project_id">
-                                            <?php foreach ($productCategories as $productCategories) : ?>
-                                                <option value="<?= $productCategories['id'] ?>"><?= $productCategories['name'] ?></option>
+                                            <?php foreach ($Projects as $Project) : ?>
+                                                <?php
+                                                $selected = ($task['project_id'] == $Project['project_id']) ? 'selected' : '';
+                                                ?>                                
+                                                <option value="<?= $Project['project_id'] ?>" <?= $selected ?>><?= $Project['project_name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <span class="form-message"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
-                                        <label for="team_id" class="form-label">NHóm thực hiện</label>
-                                        <select class="form-control" name="team_id" id="team_id">
-                                            <?php foreach ($productCategories as $productCategories) : ?>
-                                                <option value="<?= $productCategories['id'] ?>"><?= $productCategories['name'] ?></option>
+                                        <label for="account_id" class="form-label">Người thực hiện</label>
+                                        <select class="form-control" name="account_id" id="account_id">
+                                            <?php foreach ($Accounts as $Account) : ?>
+                                                <?php
+                                                $selected = ($task['account_id'] == $Account['account_id']) ? 'selected' : '';
+                                                ?>
+                                                <option value="<?= $Account['account_id'] ?>" <?= $selected ?>><?= $Account['full_name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                         <span class="form-message"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="start_date" class="form-label">Ngày bắt đầu</label>
-                                        <input class="form-control" type="date" id="start_date" name="start_date" value="" placeholder="Nhập giá" />
+                                        <input class="form-control" type="date" id="start_date" name="start_date" value="<?= $task['start_date'] ?>" placeholder="Nhập giá" />
                                         <span class="form-message" id="start_date-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="end_date" class="form-label">Ngày kết thúc</label>
-                                        <input class="form-control" type="date" id="end_date" name="end_date" value="" placeholder="Nhập giá" />
+                                        <input class="form-control" type="date" id="end_date" name="end_date" value="<?= $task['end_date'] ?>" placeholder="Nhập giá" />
                                         <span class="form-message" id="end_date-error"></span>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="content" class="form-label">Mô tả nhiệm vụ</label>
-                                        <textarea name="short_description" id="editor2" cols="30" rows="10"></textarea>
+                                        <textarea name="short_description" id="editor2" cols="30" rows="10"><?= $task['description'] ?></textarea>
                                         <span class="form-message" id="content-error"></span>
                                     </div>
 

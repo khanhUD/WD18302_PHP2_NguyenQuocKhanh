@@ -38,17 +38,49 @@ class TasksController extends BaseController
     // Xử lý  thêm nhiệm v POST
     public function store()
     {
-   
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $data = [
+                    'task_name' => $_POST['task_name'],
+                    'start_date' => $_POST['start_date'],
+                    'project_id' => $_POST['project_id'],
+                    'end_date' => $_POST['end_date'],
+                    'task_content' => $_POST['task_content'],
+                    'account_id' => $_POST['account_id'],
+                    'description' => $_POST['description'],
+                ];
+  
+                $result = $this->tasksModel->createTasks($data);
+                if ($result) {
+                    // Thêm thành công 
+                    $this->redirect('/nhiem-vu');
+                }
+            }
+        }
     }
 
     // Lấy ra thông tin của 1 dự án GET
     public function show($id)
     {
+        if (isset($_GET['id'])) {
+            // Lấy giá trị của 'id'
+            $id = $_GET['id'];
+        }
+        $this->data['tasks'] =  $this->tasksModel->getTaskDetail($id);
+        return $this->view('Admin.Tasks.Detail', $this->data);
     }
 
     // Hiển thị form sửa dự án GET
     public function edit($id)
     {
+        if (isset($_GET['id'])) {
+            // Lấy giá trị của 'id'
+            $id = $_GET['id'];
+        }   
+        $this->data['Projects'] =  $this->projectModel->getAllProjects();
+        $this->data['Accounts'] =  $this->accountsModel->getAllAccounts();
+        $this->data['task'] =  $this->tasksModel->getTaskById($id);
+        return $this->view('Admin.Tasks.Edit', $this->data);
     }
 
     // /du-an/sua-xu-ly xửa dự án POST
