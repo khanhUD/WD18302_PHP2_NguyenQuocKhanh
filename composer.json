@@ -1,0 +1,19 @@
+{
+    "name": "admin/lab2",
+    "description": "Your project description",
+    "require": {
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Config\\": "config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "khanhUD",
+            "email": "kn0958789@gmail.com"
+        }
+    ]
+}
