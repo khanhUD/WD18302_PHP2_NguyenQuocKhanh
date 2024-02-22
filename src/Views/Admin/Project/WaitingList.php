@@ -17,7 +17,7 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-                    <div class="row mt-3">
+                    <div class="row px-2">
                         <!-- Cột chiều rộng 9 -->
                         <div class="col-md-12">
                             <div class="main-content">
@@ -59,13 +59,8 @@ include './src/Views/Block/Admin/header.php';
                                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
-                                                                        <a class="dropdown-item" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
-                                                                        <form method="post" action="/du-an/xoa">
-                                                                            <input type="hidden" name="project_id" value="<?= $items['project_id'] ?>">
-                                                                            <button class="dropdown-item" type="submit">
-                                                                                <i class="bx bx-trash me-1"></i>Xóa</button>
-                                                                        </form>
+                                                                        <a class="dropdown-item text-primary" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                                                        <a class="dropdown-item text-warning" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
                                                                     </div>
                                                                 </div>
 
@@ -107,7 +102,7 @@ include './src/Views/Block/Admin/header.php';
 <!-- / Layout wrapper -->
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="../../../../public/assets/admin/js/pages/chuDuyet.js"></script>
+<script src="../../../../public/assets/admin/js/pages/WaitingListProjeact.js"></script>
 
 
 <style>

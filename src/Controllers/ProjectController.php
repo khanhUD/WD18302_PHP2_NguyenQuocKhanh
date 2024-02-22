@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Core\Request;
 use App\Models\ProjectModel;
 use App\Models\TasksModel;
 use App\Models\AccountsModel;
@@ -82,20 +83,16 @@ class ProjectController extends BaseController
     // /du-an/sua-xu-ly xửa dự án POST
     public function update()
     {
+        $request = new Request;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Lấy giá trị của 'id'
             $id = $_POST['project_id'];
-            $data = [
-                'project_name' => "'" . $_POST['project_name'] . "'",
-                'description' => "'" . $_POST['description'] . "'",
-                'start_date' => $_POST['start_date'],
-                'end_date' => $_POST['end_date'],
-                'project_cost' => $_POST['project_cost'],
-            ];
+            $data = $request->getBody();
             $result = $this->projectModel->updateProject($data, $id);
             if ($result) {
-                $this->redirect('/du-an');
+                $this->redirect('/du-an/chi-tiet/'.$id);
             }
         }
     }

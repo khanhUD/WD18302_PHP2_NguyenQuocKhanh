@@ -12,7 +12,7 @@ abstract class BaseModel implements CrudInterface
 {
     use QueryBuilder;
 
-    private $_connection;
+    protected $_connection;
 
     private $_query;
 
@@ -82,6 +82,7 @@ abstract class BaseModel implements CrudInterface
             }
             $updateStr = rtrim($updateStr, ',');
             $sql = "UPDATE $table SET $updateStr";
+            // var_dump($sql);die();
             if (!empty($condition)) {
                 $sql = "UPDATE $table SET $updateStr WHERE $condition";
             }

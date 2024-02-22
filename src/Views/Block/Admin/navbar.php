@@ -71,12 +71,7 @@
                                   <span class="align-middle">Đăng xuất</span>
                               </a>
                           </li>
-                          <li>
-                              <a class="dropdown-item" href="/dang-xuat">
-                                  <i class="bx bx-power-off me-2"></i>
-                                  <span class="align-middle">Quên mật khẩu</span>
-                              </a>
-                          </li>
+                
                       <?php endif; ?>
                       <?php if (!isset($_SESSION['users'])) : ?>
                           <li>

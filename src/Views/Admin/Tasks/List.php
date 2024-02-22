@@ -17,14 +17,10 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-                    <div class="mt-3">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title"> </h4>
-                        </div>
-
+                    <div class="px-2">     
+                        <h4>Tạo nhiệm vụ</h4>
                         <div class="card p-3">
-                            <h4>TẠO NHIỆM VỤ</h4>
-                            <form id="form-add-products" action="/nhiem-vu/them-xu-ly" method="POST" enctype="multipart/form-data">
+                            <form id="form-add-tasks" action="/nhiem-vu/them-xu-ly" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_name" class="form-label">Tên nhiệm vụ</label>
@@ -66,7 +62,7 @@ include './src/Views/Block/Admin/header.php';
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="content" class="form-label">Mô tả nhiệm vụ</label>
-                                        <textarea name="short_description" id="editor2" cols="30" rows="10"></textarea>
+                                        <textarea name="description" id="editor2" cols="30" rows="10"></textarea>
                                         <span class="form-message" id="content-error"></span>
                                     </div>
 
@@ -87,13 +83,13 @@ include './src/Views/Block/Admin/header.php';
                         <div class="col-md-12">
                             <div class="main-content">
                                 <!-- Nội dung của cột 9 -->
-                                <h4>Danh sách kế hoạch </h4>
+                                <h4>Danh sách nhiệm vụ </h4>
                                 <div class="card">
                                     <div class="table-responsive text-nowrap p-2">
                                         <table id="example" class="table table-striped " style="width:100%">
                                             <thead>
                                                 <tr>
-
+                                                    <th>STT </th>
                                                     <th>Tên nhiệm vụ </th>
                                                     <th>Thuộc dự án </th>
                                                     <th>Người thực hiện </th>
@@ -104,8 +100,10 @@ include './src/Views/Block/Admin/header.php';
 
                                             </thead>
                                             <tbody class="table-border-bottom-0">
-                                                <?php foreach ($Tasks as $task) : ?>
+                                                <?php $stt = 1;
+                                                foreach ($Tasks as $task) : ?>
                                                     <tr>
+                                                        <td><?= $stt ?></td>
                                                         <td><?= $task['task_name'] ?></td>
                                                         <td><?= $task['project_name'] ?></td>
                                                         <td><?= $task['account_full_name'] ?></td>
@@ -118,18 +116,16 @@ include './src/Views/Block/Admin/header.php';
                                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="/nhiem-vu/sua/<?= $task['task_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
-                                                                    <a class="dropdown-item" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
-                                                                    <form method="post" action="/du-an/xoa">
-                                                                        <input type="hidden" name="project_id" value="<?= $items['project_id'] ?>">
-                                                                        <button class="dropdown-item" type="submit">
-                                                                            <i class="bx bx-trash me-1"></i>Xóa</button>
-                                                                    </form>
+                                                                    <a class="dropdown-item text-primary" href="/nhiem-vu/sua/<?= $task['task_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                                                    <a class="dropdown-item text-warning" href="/nhiem-vu/chi-tiet/<?= $task['task_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
+                                                                    <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="destroy(<?= $task['task_id'] ?>)"> <i class="bx bx-trash me-1"></i> Xóa</a>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                <?php endforeach ?>
+                                                <?php
+                                                    $stt += 1;
+                                                endforeach ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -156,6 +152,8 @@ include './src/Views/Block/Admin/header.php';
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="../../../../public/assets/admin/js/pages/Tasks.js"></script>
 <?php
 include './src/Views/Block/Admin/scrip.php'
 ?>

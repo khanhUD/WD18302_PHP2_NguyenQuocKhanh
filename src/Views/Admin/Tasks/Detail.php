@@ -17,77 +17,35 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-
                     <div class="container">
-                        <h1 class="mt-5 mb-4">Chi Tiết Nhiệm Vụ Dự Án</h1>
-
-                        <div class="card">
+                        <h4 class="mt-5">Chi Tiết Nhiệm Vụ Dự Án</h4>
+                        <div class=" text-end ">
+                            <a class="btn btn-primary" href="/nhiem-vu/sua/<?= $task['task_id'] ?>"><i class="bi bi-pencil-square me-1"></i>Sửa</a>
+                    
+                        </div>
+                        <div class="card  mt-2">
                             <div class="card-body">
-                                <h5 class="card-title">Tên Nhiệm Vụ: Task Name</h5>
+                                <h5 class="card-title">Tên Nhiệm Vụ: <?= $task['task_name'] ?></h5>
                                 <div class="row mt-4">
                                     <div class="col-md-6">
-                                        <p class="card-text"><strong>Dự Án:</strong> Project Name</p>
+                                        <p class="card-text"><strong>Dự Án:</strong> <a href="/du-an/chi-tiet/<?= $task['projects_projects_id'] ?>" style="text-decoration: none;"><?= $task['projects_projects_name'] ?></a>
+                                        </p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="card-text"><strong>Nhóm Thực Hiện:</strong> Team Name</p>
+                                        <p class="card-text"><strong>Người Thực Hiện:</strong> <?= $task['account_full_name'] ?></p>
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-6">
-                                        <p class="card-text"><strong>Ngày Bắt Đầu:</strong> Start Date</p>
+                                        <p class="card-text"><strong>Ngày Bắt Đầu:</strong> <?= $task['start_date'] ?></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="card-text"><strong>Ngày Kết Thúc:</strong> End Date</p>
+                                        <p class="card-text"><strong>Ngày Kết Thúc:</strong> <?= $task['end_date'] ?></p>
                                     </div>
                                 </div>
-                                <p class="card-text mt-4"><strong>Nội Dung Nhiệm Vụ:</strong> Task Content</p>
-                                <p class="card-text "><strong>Mô Tả:</strong> Task Description</p>
-                                <p class="card-text "><strong>DANH SÁCH NHÂN VIÊN:</strong> </p>
+                                <p class="card-text mt-4"><strong>Nội Dung Nhiệm Vụ:</strong> <?= $task['task_content'] ?></p>
+                                <p class="card-text "><strong>Mô Tả:</strong> <?= htmlspecialchars_decode($task['description']) ?></p>
 
-                                <div class="card">
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-
-                                                    <th>Họ và tên</th>
-                                                    <th>Hình</th>
-                                                    <th>Email</th>
-                                                    <th>Địa chỉ</th>
-                                                    <th>Chức năng</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="table-border-bottom-0">
-
-                                                <tr>
-
-                                                    <td>Khanh</td>
-                                                    <td>Khanh@gmail.com</td>
-                                                    <td>Khanh@gmail.com</td>
-                                                    <td>Nhân viên</td>
-                                                    <td>
-                                                        <div class="dropdown">
-
-                                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                                <form method="post" action="#">
-                                                                    <input type="hidden" name="id" value="<?= $items['id'] ?>">
-                                                                    <button class="dropdown-item" type="submit">
-                                                                        <i class="bx bx-trash me-1"></i>Xóa</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

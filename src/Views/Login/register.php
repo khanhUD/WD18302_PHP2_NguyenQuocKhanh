@@ -157,7 +157,7 @@
                   <div class='form-message'></div>
                 </div>  
                 <div class="err text-center">
-              <?php echo isset($error_message) ? $error_message : ''; ?>
+                <?php echo isset($error_message) ? '<span style="color: red;">' . $error_message . '</span>' : ''; ?>
             </div>
                 <button class="btn btn-primary d-grid w-100">Đăng ký</button>
               </form>

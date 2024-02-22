@@ -18,8 +18,8 @@ include './src/Views/Block/Admin/header.php';
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
 
-                    <div class="container">
-                        <h1 class="">Chi Tiết Dự Án</h1>
+                    <div class="container ">
+                        <h4 class="">Chi Tiết Dự Án</h4>
                         <div class=" text-end ">
                             <a class="btn btn-primary" href="/du-an/sua/<?= $project['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i>Sửa</a>
                         </div>
@@ -30,7 +30,41 @@ include './src/Views/Block/Admin/header.php';
                                         <h5 class="card-title">Tên Dự Án: <?= $project['project_name'] ?></h5>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="text-md-right"><strong>Chi Phí:</strong> <?= $project['project_cost'] ?> </p>
+                                        <?php
+                                        function formatCurrency($amount)
+                                        {
+                                            $result = '';
+                                            $units = ["tỷ", "triệu", "nghìn"];
+                                            $divisors = [1000000000, 1000000, 1000];
+
+                                            for ($i = 0; $i < count($units); $i++) {
+                                                if ($amount >= $divisors[$i]) {
+                                                    $number = floor($amount / $divisors[$i]);
+                                                    $amount -= $number * $divisors[$i];
+                                                    $result .= $number . ' ' . $units[$i] . ' ';
+                                                }
+                                            }
+
+                                            // Thêm số tiền cuối cùng (nếu cần)
+                                            if ($amount > 0) {
+                                                // Nếu số tiền dưới 1 triệu, không cần thêm "0 triệu"
+                                                if ($result !== '') {
+                                                    $result .= $amount . ' ';
+                                                } else {
+                                                    $result .= $amount;
+                                                }
+                                            } else if ($result === '') {
+                                                // Nếu số tiền ban đầu là 0, trả về chuỗi '0'
+                                                $result = '0';
+                                            }
+
+                                            // Thêm chữ "VND" vào cuối chuỗi kết quả
+                                            $result .= 'VND';
+
+                                            return $result;
+                                        }
+                                        ?>
+                                        <p class="text-md-right"><strong>Chi Phí:</strong> <?= formatCurrency($project['project_cost']) ?> </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -49,38 +83,47 @@ include './src/Views/Block/Admin/header.php';
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><strong>Mô Tả Dự Án:</strong> <?= $project['description'] ?></p>
+                                        <p><strong>Mô Tả Dự Án:</strong> <?= htmlspecialchars_decode($project['description']) ?></p>
                                     </div>
 
                                 </div>
-
                                 <h5>Danh Sách Nhiệm Vụ:</h5>
                                 <?php if (empty($tasks)) : ?>
                                     <p>Chưa có danh sách phân công nhiệm vụ.</p>
                                 <?php else : ?>
                                     <div class="card">
-                                        <div class="table-responsive text-nowrap">
-                                            <table class="table table-hover">
+                                        <div class="table-responsive text-nowrap p-2">
+                                            <table id="example" class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th class="col-md-2">stt</th>
-                                                        <th class="col-md-8">Tên dự án</th>
+                                                        <th>stt</th>
+                                                        <th>Tên nhiệm vụ</th>
+                                                        <th>Ngày bắt đầu</th>
+                                                        <th>Ngày kết thúc</th>
+                                                        <th>Nội dung</th>
                                                         <th></th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
-                                                    <?php foreach ($tasks as $task) :  ?>
+
+                                                    <?php $stt = 1;
+                                                    foreach ($tasks as $task) :  ?>
                                                         <tr>
-                                                            <td>1</td>
+                                                            <td><?= $stt ?></td>
                                                             <td><?= $task['task_name'] ?></td>
+                                                            <td><?= $task['start_date'] ?></td>
+                                                            <td><?= $task['end_date'] ?></td>
+                                                            <td class="col-2 text-truncate" style="max-width: 150px;">
+                                                                <?= htmlspecialchars($task['task_content']) ?>
                                                             <td>
                                                                 <div class="text-right">
                                                                     <a href="/nhiem-vu/chi-tiet/<?= $task['task_id'] ?>" class="btn btn-primary btn-sm">Xem chi tiết</a>
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                    <?php endforeach ?>
+                                                    <?php $stt += 1;
+                                                    endforeach ?>
 
                                                 </tbody>
                                             </table>
@@ -94,14 +137,14 @@ include './src/Views/Block/Admin/header.php';
                                 <?php else : ?>
                                     <div class="card">
                                         <div class="table-responsive text-nowrap p-2">
-                                            <table id="example" class="table table-striped " style="width:100%">
+                                            <table id="example2" class="table table-striped " style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>stt</th>
                                                         <th>Họ và tên</th>
                                                         <th>Hình</th>
                                                         <th>Email</th>
-                                                        <th>Chức vụ</th>
+                                                        <th>Vai trò</th>
                                                         <th>Chức năng</th>
                                                     </tr>
                                                 </thead>
@@ -110,9 +153,14 @@ include './src/Views/Block/Admin/header.php';
                                                     foreach ($accounts as $account) : ?>
 
                                                         <tr>
-                                                            <td><?= $stt += $stt ?></td>
+                                                            <td><?= $stt  ?></td>
                                                             <td><?= $account['full_name'] ?></td>
-                                                            <td><?= $account['image'] ?></td>
+                                                            <td>
+                                                                <?php $imagePath = !empty($account['image']) ? $account['image'] : 'no_image.png'; ?>
+                                                                <div style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%;">
+                                                                    <img src="../../../../public/uploads/<?= $imagePath ?>" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+                                                                </div>
+                                                            </td>
                                                             <td><?= $account['email'] ?></td>
                                                             <td><?= $account['position'] ?></td>
                                                             <td>
@@ -122,17 +170,16 @@ include './src/Views/Block/Admin/header.php';
                                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="#"><i class="bx bx-edit-alt me-1"></i> Xem chi tiết</a>
-                                                                        <form method="post" action="#">
-                                                                            <input type="hidden" name="id" value="<?= $items['id'] ?>">
-                                                                            <button class="dropdown-item" type="submit">
-                                                                                <i class="bx bx-trash me-1"></i>Xóa</button>
-                                                                        </form>
+                                                                        <a class="dropdown-item text-warning" href="/tai-khoan/chi-tiet/<?= $account['account_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
+                                                                       <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="destroy(<?= $account['participation_id'] ?>)"> <i class="bx bx-trash me-1"></i> Xóa</a>
                                                                     </div>
                                                                 </div>
+
                                                             </td>
                                                         </tr>
-                                                    <?php endforeach ?>
+                                                    <?php
+                                                        $stt += 1;
+                                                    endforeach ?>
 
                                                 </tbody>
                                             </table>
@@ -161,6 +208,8 @@ include './src/Views/Block/Admin/header.php';
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="../../../../public/assets/admin/js/pages/Projectparticipation.js"></script>
 <?php
 include './src/Views/Block/Admin/scrip.php'
 ?>

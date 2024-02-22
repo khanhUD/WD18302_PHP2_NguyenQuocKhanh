@@ -15,18 +15,16 @@ include './src/Views/Block/Admin/header.php';
       ?>
       <!-- Content wrapper -->
       <div class="content-wrapper">
-        <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="container-xxl flex-grow-1 container-p-y ">
           <!-- / Content -->
-          <div class="mt-3">
-
-
+          <div class="px-2">
+            <h4>Tạo kế hoạch dự án</h4>
             <div class="card p-3">
-              <h4>TẠO KẾ HOẠCH DỰ ÁN</h4>
               <form id="form-add-products" action="/du-an/them-xu-ly" method="POST" enctype="multipart/form-data">
                 <div class="row">
                   <div class="mb-3 col-md-6 form-group">
                     <label for="project_name" class="form-label">Tên dự án</label>
-                    <input class="form-control" type="text" id="project_name" name="project_name" value="" placeholder="Nhập tiêu đề bài viết" />
+                    <input class="form-control" type="text" id="project_name" name="project_name" value="" placeholder="Nhập tên dự án" />
                     <span class="form-message" id="project_name-error"></span>
                   </div>
                   <div class="mb-3 col-md-6 form-group">
@@ -69,11 +67,11 @@ include './src/Views/Block/Admin/header.php';
                 <!-- Nội dung của cột 9 -->
                 <h4>Danh sách kế hoạch </h4>
                 <div class="card">
-                <div class="table-responsive text-nowrap p-2">
-                      <table id="example" class="table table-striped " style="width:100%">
+                  <div class="table-responsive text-nowrap p-2">
+                    <table id="example" class="table table-striped " style="width:100%">
                       <thead>
                         <tr>
-
+                          <th>STT </th>
                           <th>Dự án </th>
                           <th>NGày tạo</th>
                           <th>Chi phí</th>
@@ -82,12 +80,50 @@ include './src/Views/Block/Admin/header.php';
 
                       </thead>
                       <tbody class="table-border-bottom-0">
+                        <?php
+                        function formatCurrency($amount)
+                        {
+                          $result = '';
+                          $units = ["tỷ", "triệu", "nghìn"];
+                          $divisors = [1000000000, 1000000, 1000];
 
-                        <?php foreach ($listProject as $items) : ?>
+                          for ($i = 0; $i < count($units); $i++) {
+                            if ($amount >= $divisors[$i]) {
+                              $number = floor($amount / $divisors[$i]);
+                              $amount -= $number * $divisors[$i];
+                              $result .= $number . ' ' . $units[$i] . ' ';
+                            }
+                          }
+
+                          // Thêm số tiền cuối cùng (nếu cần)
+                          if ($amount > 0) {
+                            // Nếu số tiền dưới 1 triệu, không cần thêm "0 triệu"
+                            if ($result !== '') {
+                              $result .= $amount . ' ';
+                            } else {
+                              $result .= $amount;
+                            }
+                          } else if ($result === '') {
+                            // Nếu số tiền ban đầu là 0, trả về chuỗi '0'
+                            $result = '0';
+                          }
+
+                          // Thêm chữ "VND" vào cuối chuỗi kết quả
+                          $result .= 'VND';
+
+                          return $result;
+                        }
+                        ?>
+                        <?php
+
+                        $stt = 1;
+                        foreach ($listProject as $items) : ?>
                           <tr>
+                            <td><?= $stt  ?></td>
                             <td><?= $items['project_name'] ?></td>
                             <td><?= $items['create_at'] ?></td>
-                            <td><?= $items['project_cost'] ?></td>
+
+                            <td><?= formatCurrency($items['project_cost']) ?></td>
 
                             <td>
                               <div class="dropdown">
@@ -96,19 +132,16 @@ include './src/Views/Block/Admin/header.php';
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
-                                  <a class="dropdown-item" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
-                                  <form method="post" action="/du-an/xoa">
-                                    <input type="hidden" name="project_id" value="<?= $items['project_id'] ?>">
-                                    <button class="dropdown-item" type="submit">
-                                      <i class="bx bx-trash me-1"></i>Xóa</button>
-                                  </form>
+                                  <a class="dropdown-item text-primary" href="/du-an/sua/<?= $items['project_id'] ?>"><i class="bi bi-pencil-square me-1"></i></i>Sửa</a>
+                                  <a class="dropdown-item text-warning" href="/du-an/chi-tiet/<?= $items['project_id'] ?>"><i class="bx bx-show me-1"></i></i>Xem chi tiết</a>
+                                  <a href="javascript:void(0);" class="dropdown-item text-danger" onclick="destroy(-1, <?= $items['project_id'] ?>)"> <i class="bx bx-trash me-1"></i> Xóa</a>
                                 </div>
                               </div>
-
                             </td>
                           </tr>
-                        <?php endforeach; ?>
+                        <?php
+                          $stt++;
+                        endforeach; ?>
                       </tbody>
                     </table>
                   </div>
@@ -135,6 +168,8 @@ include './src/Views/Block/Admin/header.php';
   <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="../../../../public/assets/admin/js/pages/Projeacts.js"></script>
 <?php
 include './src/Views/Block/Admin/scrip.php'
 ?>

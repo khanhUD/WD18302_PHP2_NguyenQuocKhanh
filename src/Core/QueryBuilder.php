@@ -30,6 +30,7 @@ trait QueryBuilder
             $this->operator = " AND ";
         }
         $this->where .= "$this->operator $field $compare '$value'";
+ 
         return $this;
     }
 
@@ -132,8 +133,8 @@ trait QueryBuilder
         $whereUpdate = trim($whereUpdate);
         $tableName = $this->tableName;
         $updateStatus = $this->updateData($tableName, $data, $whereUpdate);
-
         return $updateStatus;
+
     }
 
     public function delete()

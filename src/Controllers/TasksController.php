@@ -32,13 +32,11 @@ class TasksController extends BaseController
     */
     public function create()
     {
-        
     }
 
     // Xử lý  thêm nhiệm v POST
     public function store()
-    {
-        {
+    { {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $data = [
                     'task_name' => $_POST['task_name'],
@@ -49,7 +47,7 @@ class TasksController extends BaseController
                     'account_id' => $_POST['account_id'],
                     'description' => $_POST['description'],
                 ];
-  
+
                 $result = $this->tasksModel->createTasks($data);
                 if ($result) {
                     // Thêm thành công 
@@ -66,7 +64,7 @@ class TasksController extends BaseController
             // Lấy giá trị của 'id'
             $id = $_GET['id'];
         }
-        $this->data['tasks'] =  $this->tasksModel->getTaskDetail($id);
+        $this->data['task'] =  $this->tasksModel->getTaskDetail($id);
         return $this->view('Admin.Tasks.Detail', $this->data);
     }
 
@@ -76,7 +74,7 @@ class TasksController extends BaseController
         if (isset($_GET['id'])) {
             // Lấy giá trị của 'id'
             $id = $_GET['id'];
-        }   
+        }
         $this->data['Projects'] =  $this->projectModel->getAllProjects();
         $this->data['Accounts'] =  $this->accountsModel->getAllAccounts();
         $this->data['task'] =  $this->tasksModel->getTaskById($id);
@@ -86,11 +84,31 @@ class TasksController extends BaseController
     // /du-an/sua-xu-ly xửa dự án POST
     public function update()
     {
+        $request = new Request;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Lấy giá trị của 'id'
+            $id = $_POST['task_id'];
+            $data = $request->getBody();
+            $result = $this->tasksModel->updateTask($data, $id);
+            if ($result) {
+                $this->redirect('/nhiem-vu/chi-tiet/'.$id);
+            }
+        }
     }
 
 
     //  Xử lý xóa dự án Delete
     public function destroy()
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Lấy giá trị của 'id'
+            $id = $_POST['task_id'];
+            $result = $this->tasksModel->deleteTask($id);
+            if ($result) {
+                $this->redirect('/nhiem-vu');
+            }
+        }
     }
 }

@@ -10,12 +10,10 @@ class ProjectModel extends BaseModel
     public $tableName = 'projects';
     public function getAllProjects()
     {
-      
         $data = $this
             ->table($this->tableName)
             ->where('status', '=', 1)
             ->get();
-
         return $data;
     }
     public function getProjectDetail($id)
@@ -51,14 +49,16 @@ class ProjectModel extends BaseModel
             ->insert($data);
         return $data;
     }
-    public function updateProject($data, $id)
+    public function updateProject($data, $condition)
     {
-     
-        $data = $this
-            ->table($this->tableName)
-            ->where('project_id', '=', $id)
-            ->update($data, $id);
-        return $data;
+        $attrs = array_keys($data);
+        $setStr = implode(", ", array_map(fn ($attr) => "$attr = :$attr", $attrs));
+        $sql = "UPDATE $this->tableName SET $setStr WHERE BINARY project_id = $condition";
+        $stmt = $this->_connection->PDO()->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+        return $stmt->execute();
     }
     public function disable($data, $id)
     {

@@ -17,17 +17,15 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-                    <div class="mt-3">
-
-
-                        <div class="card p-3">
-                            <h4>SỬA KẾ HOẠCH DỰ ÁN</h4>
+                    <div class="px-2">
+                    <h4>SỬA KẾ HOẠCH DỰ ÁN</h4>
+                        <div class="card p-3">                          
                             <form id="form-add-products" action="/du-an/sua-xu-ly" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <input class="form-control" type="hidden" id="project_id" name="project_id" value="<?= $project['project_id']  ?>" />
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="project_name" class="form-label">Tên dự án</label>
-                                        <input class="form-control" type="text" id="project_name" name="project_name" value="<?= $project['project_name']  ?>" placeholder="Nhập tiêu đề bài viết" />
+                                        <input class="form-control" type="text" id="project_name" name="project_name" value="<?= $project['project_name']  ?>" placeholder="Nhập tên dự án" />
                                         <span class="form-message" id="project_name-error"></span>
                                     </div>
                                     <div class="mb-3 col-md-6 form-group">
@@ -83,6 +81,7 @@ include './src/Views/Block/Admin/header.php';
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
+<script src="../../../../public/assets/admin/js/pages/Projeacts.js"></script>
 <?php
 include './src/Views/Block/Admin/scrip.php'
 ?>

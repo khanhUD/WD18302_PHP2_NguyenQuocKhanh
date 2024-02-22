@@ -17,11 +17,13 @@ include './src/Views/Block/Admin/header.php';
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!-- / Content -->
-                    <div class="mt-3">
+                    <div class="px-2">
+                    <h4>Sửa Nhiệm Vụ</h4>
                         <div class="card p-3">
-                            <h4>SỬA NHIỆM VỤ</h4>
-                            <form id="form-add-products" action="" method="POST" enctype="multipart/form-data">
+                         
+                            <form id="form-add-tasks" action="/nhiem-vu/sua-xu-ly" method="POST" enctype="multipart/form-data">
                                 <div class="row">
+                                    <input type="hidden" name="task_id" value="<?= $task['task_id'] ?>">
                                     <div class="mb-3 col-md-6 form-group">
                                         <label for="task_name" class="form-label">Tên nhiệm vụ</label>
                                         <input class="form-control" type="text" id="task_name" name="task_name" value="<?= $task['task_name'] ?>" placeholder="Nhập tiêu đề bài viết" />
@@ -38,7 +40,7 @@ include './src/Views/Block/Admin/header.php';
                                             <?php foreach ($Projects as $Project) : ?>
                                                 <?php
                                                 $selected = ($task['project_id'] == $Project['project_id']) ? 'selected' : '';
-                                                ?>                                
+                                                ?>
                                                 <option value="<?= $Project['project_id'] ?>" <?= $selected ?>><?= $Project['project_name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
@@ -68,7 +70,7 @@ include './src/Views/Block/Admin/header.php';
                                     </div>
                                     <div class="mb-3 form-group">
                                         <label for="content" class="form-label">Mô tả nhiệm vụ</label>
-                                        <textarea name="short_description" id="editor2" cols="30" rows="10"><?= $task['description'] ?></textarea>
+                                        <textarea name="description" id="editor2" cols="30" rows="10"><?= $task['description'] ?></textarea>
                                         <span class="form-message" id="content-error"></span>
                                     </div>
 
@@ -104,6 +106,8 @@ include './src/Views/Block/Admin/header.php';
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="../../../../public/assets/admin/js/pages/Tasks.js"></script>
 <?php
 include './src/Views/Block/Admin/scrip.php'
 ?>
